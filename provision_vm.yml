@@ -13,7 +13,8 @@
       validate_certs: false
       headers:
         Content-Type: application/json
-      body: '{ "registration_command": { "activation_keys": ["RHEL 8"], "insecure": "true" }}'
+#      body: '{ "registration_command": { "activation_keys": ["RHEL 8"], "insecure": "true" }}'
+      body: '{ "registration_command": { "{{ activation_key }}", "insecure": "true" }}'      
       return_content: true
     register: render_api
   - set_stats:
