@@ -1,0 +1,27 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+  - name: Generate Activitaion Keys
+    ansible.builtin.uri:
+      url: https://10.1.32.3/api/registration_commands
+      url_username: "admin"
+      url_password: "Admin@123"
+      force_basic_auth: yes
+      method: POST
+      validate_certs: false
+      headers:
+        Content-Type: application/json
+      body: '{ "registration_command": { "activation_keys": ["RHEL 8"], "insecure": "true" }}'
+      return_content: true
+    register: render_api
+  - set_stats:
+      data:
+        render_api: "{{ render_api.content }}"
+
+- hosts: all
+  gather_facts: false
+  tasks:
+  - name: Register Host
+    ansible.builtin.shell: "{{ hostvars.localhost.render_api.json.registration_command }}"
