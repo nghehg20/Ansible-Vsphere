@@ -14,7 +14,7 @@
       headers:
         Content-Type: application/json
 #      body: '{ "registration_command": { "activation_keys": ["RHEL 8"], "insecure": "true" }}'
-      body: '{ "{{ registration_command }}" }'      
+      body: '{ "registration_command": "{{ registration_command }}" | to_json }'      
       return_content: true
     register: render_api
   - set_stats:
