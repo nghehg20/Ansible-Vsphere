@@ -26,7 +26,7 @@
         type: static
       customization:
         autologon: True
-        domain: rhel8.2_test_register_satellite
+        domain: rhel8.2_test
       wait_for_ip_address: true
     with_items:
      - rhel8.2_test_register_satellite
