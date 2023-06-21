@@ -30,6 +30,6 @@
   gather_facts: false
   tasks:
   - name: Prepare Server
-    ansible.builtin.command: echo "10.1.32.3 satellite.lab" >> /etc/hosts
+    ansible.builtin.shell: echo "10.1.32.3 satellite.lab" >> /etc/hosts
   - name: Register Host
     ansible.builtin.shell: "{{ hostvars.localhost.render_api.json.registration_command }}"
