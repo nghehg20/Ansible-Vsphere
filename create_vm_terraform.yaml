@@ -1,0 +1,10 @@
+---
+- name: create vm demo
+  hosts: all
+  become: false
+  gather_facts: false
+  tasks:
+  - name: Basic deploy of a service
+    community.general.terraform:
+      project_path: '/root/template/terraform'
+      state: present
