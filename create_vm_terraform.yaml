@@ -8,6 +8,7 @@
     community.general.terraform:
       project_path: '/root/template/terraform'
       state: present
+    register: IP
   - name: Test
     ansible.builtin.uri:
       url:  https://10.1.14.12/api/v2/inventories/6/hosts/
