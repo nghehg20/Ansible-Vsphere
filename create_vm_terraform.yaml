@@ -8,3 +8,18 @@
     community.general.terraform:
       project_path: '/root/template/terraform'
       state: present
+  - name: Test
+    ansible.builtin.uri:
+      url:  https://10.1.14.12/api/v2/inventories/6/hosts/
+      url_username: "admin"
+      url_password: "h!h]{bDK7Zg$HxK6?5~,"
+      force_basic_auth: yes
+      method: POST
+      validate_certs: false
+      headers:
+        Content-Type: application/json
+      body_format: json
+      body: '{"name": "{{ hostvars.localhost.IP.outputs.public_ip.value }}",
+              "variables": "ansible_host: {{ hostvars.localhost.IP.outputs.public_ip.value }}"
+            }'
+      status_code: 201
